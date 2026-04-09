@@ -94,6 +94,178 @@ Real-world project exposure
 
 This project is inspired by a real-world SQL data warehouse tutorial series that demonstrates practical data engineering workflows.
 
+## 🏗️ Data Architecture
+
+The data architecture for this project follows the **Medallion Architecture**, consisting of **Bronze**, **Silver**, and **Gold** layers.
+This design ensures a scalable, maintainable, and analytics-ready data pipeline.
+
+---
+
+### 🔄 Architecture Flow
+
+```
+Sources (CRM, ERP CSV Files)
+        ↓
+Bronze Layer (Raw Data)
+        ↓
+Silver Layer (Cleaned & Standardized Data)
+        ↓
+Gold Layer (Business-Ready Data)
+        ↓
+Consumption (BI, Reporting, Analytics)
+```
+
+---
+
+## 🥉 Bronze Layer — Raw Data
+
+**Purpose:**
+Stores raw data as-is from source systems.
+
+**Source Systems:**
+
+* CRM system
+* ERP system
+* CSV files
+
+**Key Characteristics:**
+
+* No transformations applied
+* Data stored in original format
+* Handles batch ingestion
+
+**Technical Details:**
+
+* Object Type: Tables
+* Load Type: Full Load / Incremental Load
+* Processing: Batch Processing
+* Data Model: None (Raw Structure)
+
+---
+
+## 🥈 Silver Layer — Cleaned & Standardized Data
+
+**Purpose:**
+Transforms raw data into clean, consistent, and structured format.
+
+**Key Transformations:**
+
+* Data cleansing (remove nulls, trim spaces)
+* Standardization (gender, country, categories)
+* Data normalization
+* Derived columns creation
+
+**Technical Details:**
+
+* Object Type: Tables
+* Load Type: Truncate & Insert / Batch Processing
+* Transformations:
+
+  * Data Cleaning
+  * Data Standardization
+  * Data Enrichment
+* Data Model: Normalized
+
+---
+
+## 🥇 Gold Layer — Business-Ready Data
+
+**Purpose:**
+Provides data optimized for analytics and reporting.
+
+**Key Features:**
+
+* Star schema design
+* Dimension and fact tables
+* Aggregated and business-level metrics
+
+**Technical Details:**
+
+* Object Type: Views
+* Load Type: No Load (Derived from Silver)
+* Transformations:
+
+  * Data Integration
+  * Business Logic
+  * Aggregations
+
+**Data Model:**
+
+* Star Schema
+
+  * Dimension Tables:
+
+    * `dim_customers`
+    * `dim_products`
+  * Fact Table:
+
+    * `fact_sales`
+
+---
+
+## 📊 Consumption Layer
+
+The Gold layer is consumed by:
+
+* 📈 Business Intelligence (Power BI, Tableau)
+* 🔍 Ad-hoc SQL Queries
+* 🤖 Machine Learning Models
+
+---
+
+## 🧠 Summary
+
+| Layer  | Purpose           | Data Type        | Processing   |
+| ------ | ----------------- | ---------------- | ------------ |
+| Bronze | Raw ingestion     | Unprocessed data | Batch        |
+| Silver | Clean & transform | Structured data  | ETL          |
+| Gold   | Analytics-ready   | Aggregated data  | BI/Reporting |
+
+---
+
+
+## 📁 Repository Structure
+
+```bash
+SQL_DataWarehouse_Project/
+│
+├── datasets/                         # Raw datasets (CRM, ERP CSV files)
+│   └── placeholder
+│
+├── documents/                        # Project documentation
+│   ├── data_catalog.md               # Data dictionary for Gold layer
+│   └── placeholder
+│
+├── scripts/                          # SQL scripts for ETL pipeline
+│   ├── bronze/                       # Raw data ingestion scripts
+│   ├── silver/                       # Data cleaning & transformation scripts
+│   ├── gold/                         # Star schema (views: dimensions & fact)
+│   ├── init_database.sql             # Database initialization script
+│   └── placeholder
+│
+├── tests/                            # Data quality and validation scripts
+│   ├── quality_check_silver.sql
+│   ├── quality_checks_gold.sql
+│
+├── README.md                         # Project overview
+├── requirements.txt                  # Project dependencies
+├── .gitignore                        # Ignored files for Git
+├── LICENSE                           # License information
+```
+
+---
+
+## 📌 Description
+
+* **datasets/** → Contains raw input data (CRM, ERP files)
+* **documents/** → Documentation such as data catalog and architecture
+* **scripts/** → Core SQL scripts for Bronze, Silver, Gold layers
+* **tests/** → Data validation and quality checks
+* **README.md** → Project overview and instructions
+
+---
+
+
 📬 Contact
 
 If you have any questions or suggestions, feel free to connect!
