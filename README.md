@@ -6,7 +6,7 @@ Building  a modern Dateware house with sql server including ETL process, data mo
 This project demonstrates how to build a complete Data Warehouse from scratch using SQL. It follows a real-world data engineering workflow including data ingestion, transformation, and modeling for analytics.
 
 The project is inspired by this tutorial:
-👉 Watch Full Tutorial
+👉 [Watch Full Tutorial](https://youtu.be/9GVqKuTVANE?si=i7G_TKuRd9LK2Ox)
 
 It focuses on creating a structured system that converts raw data into meaningful insights for business decision-making.
 
